@@ -1,6 +1,6 @@
 <h1><%= @article.title %></h1>
 <h3><%=@article.body%> </h3>
-
+<%= params.inspect %>
 <h2>Comments</h2>
 <% @article.comments.each do |comment| %>
   <p>
