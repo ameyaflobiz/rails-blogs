@@ -9,6 +9,6 @@ class Article < ApplicationRecord
     end
 
     def self.triggerException
-        raise KuchTohError 
+        # raise KuchTohError 
     end
 end
