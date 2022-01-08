@@ -1,7 +1,10 @@
 class ArticlesController < ApplicationController
-  
+  rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed 
   def index
+    Article.triggerException
     @articles=Article.all
+  rescue Article::KuchTohError
+    render json:{message:"Error aaya hai"}
   end
 
   def show
@@ -37,12 +40,15 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article=Article.find(params[:id])
-    @article.destroy
+    @article.destroy!
     redirect_to root_path
   end
   private
     def article_params
       params.permit(:title, :body)
     end
-
+    
+    def not_destroyed
+      render json: {} ,status: :unprocessable_entity
+    end
 end
