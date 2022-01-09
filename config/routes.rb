@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'images/show'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "articles#index" 
-  
+  resource :users, only:[:create]
+  post "/login",to:"users#login"
+  get "/auto_login",to:"users#auto_login"
   resources :articles do
     resources :images
     resources :comments
