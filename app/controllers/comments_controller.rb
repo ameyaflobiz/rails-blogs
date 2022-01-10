@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
         @comment= Article.find(params[:article_id]).comments.find(params[:id])
     end
     def destroy
+        # print( params.require(:comments))
         @article=Article.find(params[:article_id])
         @comment= @article.comments.find(params[:id])
         @comment.destroy
